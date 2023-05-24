@@ -15,7 +15,7 @@ jobs:
            chmod 400 shahsahib28.pem
            sudo su
            sudo apt-get -y install openssh-client
-           ssh -v -o StrictHostKeyChecking=no -i shahsahib28.pem ec2-user@35.185.56.7 "cd /var/www/html/YPay-backend && git fetch origin && git reset --hard origin/ypayGCP && pm2 restart all"
+           ssh -v -o StrictHostKeyChecking=no -i shahsahib28.pem ec2-user@35.196.147.68 "cd /var/www/html/YPay-backend && git fetch origin && git reset --hard origin/ypayGCP && pm2 restart all"
 
 
 
