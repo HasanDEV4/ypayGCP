@@ -11,8 +11,8 @@ jobs:
          uses: actions/checkout@v2
        - name: Connect to GCP to compute engine
          run: |
-           echo "$PEM_KEY" | base64 --decode > PEM_KEY
-           chmod 400 PEM_KEY
+           echo "$PEM_KEY" | base64 --decode > shahsahib28.pem
+           chmod 400 shahsahib28.pem
            sudo su
            sudo apt-get -y install openssh-client
            ssh -v -o StrictHostKeyChecking=no -i PEM_KEY ec2-user@35.185.56.7 "cd /var/www/html/YPay-backend && git pull && systemctl restart apache2"
