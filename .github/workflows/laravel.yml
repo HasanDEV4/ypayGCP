@@ -1,24 +1,44 @@
-name: Laravel
-
+name: Connect to GCP to compute engine
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+   push:
+     branches:
+       - main
 jobs:
-  laravel-tests:
+   deploy:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout code
+         uses: actions/checkout@v2
+       - name: Connect to GCP to compute engine
+         run: |
+           echo "$PEM_KEY" | base64 --decode > PEM_KEY
+           chmod 400 PEM_KEY
+           sudo su
+           sudo apt-get -y install openssh-client
+           ssh -v -o StrictHostKeyChecking=no -i PEM_KEY ec2-user@35.185.56.7 "cd /var/www/html/YPay-backend && git pull && systemctl restart apache2"
 
-    runs-on: self-hosted
 
-    steps:
-    - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
-      with:
-        php-version: '8.1'
-    - uses: actions/checkout@v3
-    - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-    - name: Generate key
-      run: php artisan key:generate
-    
-     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
